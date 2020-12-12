@@ -1,0 +1,59 @@
+import os
+import torch
+import pandas as pd
+import numpy as np
+import cv2
+
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms, utils
+
+from datasets.transforms import RandomCrop, Resize, ToTensor, SqueezeAndFlip
+
+PATH = 'TODO'
+
+class {{name}}(Dataset):
+    def __init__(self, args, annotations = None, kind = 'train', image_transforms = None):
+        self.args = args
+        self.image_transforms = image_transforms
+
+        # TODO your code here
+
+    def __len__(self):
+        # TODO your code here
+        pass
+
+    @classmethod
+    def train_dataloader(cls, args):
+        composed = transforms.Compose([
+            RandomCrop(period_length = args.period_length),
+            SqueezeAndFlip(amount = 0.2),
+            Resize(dsize = (224, 224)),
+            ToTensor()
+        ])
+
+        return DataLoader(
+            cls(args = args, image_transforms = composed, kind = 'train'),
+            batch_size = args.batch_size,
+            shuffle = True
+        )
+
+    @classmethod
+    def val_dataloader(cls, args):
+        composed = transforms.Compose([
+            RandomCrop(period_length = args.period_length),
+            Resize(dsize = (224, 224)),
+            ToTensor()
+        ])
+
+        return DataLoader(
+            cls(args = args, image_transforms = composed, kind = 'val'),
+            batch_size = args.batch_size,
+            shuffle = True
+        )
+
+    def on_epoch_end(self):
+        pass
+
+    def __getitem__(self, idx):
+        # TODO your code here
+        pass

@@ -1,0 +1,38 @@
+"""
+    DO NOT MODIFY THIS FILE BY HAND.
+    USE THE acumenai TOOL FOR ADDING NEW OBJECTS.
+"""
+
+
+import models
+import datasets
+import trainers
+import evaluators
+import torch
+
+device = torch.device("cuda:0")
+
+DATASETS = {
+{%- for item in dataset_names %}
+    '{{item.name}}': datasets.{{item.object_name}},
+{%- endfor %}
+}
+
+MODELS = {
+{%- for item in model_names %}
+    '{{item.name}}': models.{{item.object_name}},
+{%- endfor %}
+}
+
+TRAINERS = {
+{%- for item in trainer_names %}
+    '{{item.name}}': trainers.{{item.object_name}},
+{%- endfor %}
+}
+
+EVALUATORS = {
+{%- for item in evaluator_names %}
+    '{{item.name}}': evaluators.{{item.object_name}},
+{%- endfor %}
+}
+

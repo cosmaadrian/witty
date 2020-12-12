@@ -1,0 +1,35 @@
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import tqdm
+import wandb
+
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms, utils
+import torch
+
+import nomenclature
+from datasets import CASIADataset
+from datasets.transforms import RandomCrop, ToTensor
+
+from .base_evaluator import BaseEvaluator
+
+
+class {{name}}(BaseEvaluator):
+    def __init__(self, args, model):
+        super().__init__(args, model)
+        # self.dataloader = nomenclature.DATASETS['<TODO>'].val_dataloader(args)
+
+    def trainer_evaluate(self, step):
+        # TODO your code here
+        pass
+
+    def evaluate(self):
+        # TODO your code here
+        pass
+
+
